@@ -12,7 +12,7 @@ const app = express();
 let items = ["Buy Food", "Prepare Food", "Cook Food", "Eat Food"];
 // set an empty array for new work items
 let workItems = ["Show Up", "Get Settled"];
-
+// set new array for fun items
 let foon = ["Eat", "Sleep", "WIN!", "Repeat?"]
 // set EJS as the viewing engine to display html
 app.set('view engine', 'ejs');
@@ -54,7 +54,7 @@ app.post("/", function(req, res) {
 app.get("/work", function(req, res){
     res.render("list", {listTitle: "Work To Do List", newListItems: workItems})
 });
-
+//display fun to do list on /fun
 app.get("/fun", function(req, res){
     res.render("list", {listTitle: "FUN To Do List", newListItems: foon})
 });
