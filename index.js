@@ -13,6 +13,8 @@ let items = ["Buy Food", "Prepare Food", "Cook Food", "Eat Food"];
 // set an empty array for new work items
 let workItems = ["Show Up", "Get Settled"];
 
+let foon = ["Eat", "Sleep", "Win"];
+
 // set EJS as the viewing engine to display html
 app.set('view engine', 'ejs');
 
@@ -52,6 +54,10 @@ app.post("/", function(req, res) {
 // display default to do list on the localhost:3000/work route!
 app.get("/work", function(req, res){
     res.render("list", {listTitle: "Work To Do List", newListItems: workItems})
+});
+
+app.get("/fun", function(req, res){
+    res.render("list", {listTitle: "Work To Do List", newListItems: foon})
 });
 
 app.listen(3000, function() {
