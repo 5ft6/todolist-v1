@@ -13,7 +13,7 @@ let items = ["Buy Food", "Prepare Food", "Cook Food", "Eat Food"];
 // set an empty array for new work items
 let workItems = ["Show Up", "Get Settled"];
 // set new array for fun items
-let foon = ["Eat", "Sleep", "WIN!", "Repeat?"]
+let funItems = ["Eat", "Sleep", "WIN!", "Repeat?"]
 // set EJS as the viewing engine to display html
 app.set('view engine', 'ejs');
 
@@ -34,6 +34,19 @@ app.get("/", function(req, res) {
     
 });
 
+// display default to do list on the localhost:3000/work route!
+app.get("/work", function(req, res){
+    res.render("list", {listTitle: "Work To Do List", newListItems: workItems})
+});
+//display fun to do list on /fun
+app.get("/fun", function(req, res){
+    res.render("list", {listTitle: "FUN To Do List", newListItems: funItems})
+});
+
+app.listen(3000, function() {
+console.log ("Server is running on port 3000")
+});
+
 // display default to do list on the default root folder
 app.post("/", function(req, res) {
     
@@ -44,21 +57,16 @@ app.post("/", function(req, res) {
     if (req.body.list === "Work") {
         workItems.push(item);
         res.redirect("/work");
-    } else {
+    } 
+
+    else if (req.body.list === "Fun") {
+        funItems.push(item);
+        res.redirect("/fun");
+    } 
+    
+    else {
         items.push(item);
         res.redirect("/");
     }
 });
 
-// display default to do list on the localhost:3000/work route!
-app.get("/work", function(req, res){
-    res.render("list", {listTitle: "Work To Do List", newListItems: workItems})
-});
-//display fun to do list on /fun
-app.get("/fun", function(req, res){
-    res.render("list", {listTitle: "FUN To Do List", newListItems: foon})
-});
-
-app.listen(3000, function() {
-console.log ("Server is running on port 3000")
-});
