@@ -9,11 +9,13 @@ const date = require(__dirname + "/date.js");
 const app = express();
 
 // set an array for the default items in the list
-let items = ["Buy Food", "Prepare Food", "Cook Food", "Eat Food"];
+let items = ["Hello"];
 // set an empty array for new work items
 let workItems = ["Show Up", "Get Settled"];
 
-let foon = ["Eat", "Sleep", "Win"];
+let end = ["Eat", "Sleep", "Win"];
+
+let day = ["Work", "More worke"];
 
 // set EJS as the viewing engine to display html
 app.set('view engine', 'ejs');
@@ -31,7 +33,7 @@ app.get("/", function(req, res) {
     let day = date.getDate();
     
     // use EJS render to display the day and the To Do List
-    res.render("list", {listTitle: day, newListItems: items});
+    res.render("header", {listTitle: day, newListItems: items});
     
 });
 
@@ -52,12 +54,12 @@ app.post("/", function(req, res) {
 });
 
 // display default to do list on the localhost:3000/work route!
-app.get("/work", function(req, res){
-    res.render("list", {listTitle: "Work To Do List", newListItems: workItems})
+app.get("/weekday", function(req, res){
+    res.render("list", {listTitle: "Weekday List", newListItems: day})
 });
 
-app.get("/fun", function(req, res){
-    res.render("list", {listTitle: "Work To Do List", newListItems: foon})
+app.get("/weekend", function(req, res){
+    res.render("list", {listTitle: "Weekend List", newListItems: end})
 });
 
 app.listen(3000, function() {
